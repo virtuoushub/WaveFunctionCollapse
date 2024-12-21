@@ -11,7 +11,7 @@ class OverlappingModel : Model
     public OverlappingModel(string name, int N, int width, int height, bool periodicInput, bool periodic, int symmetry, bool ground, Heuristic heuristic)
         : base(width, height, N, periodic, heuristic)
     {
-        var (bitmap, SX, SY) = BitmapHelper.LoadBitmap($"samples/{name}.png");        
+        var (bitmap, SX, SY) = BitmapHelper.LoadBitmap($"samples/{name}.png");
         byte[] sample = new byte[bitmap.Length];
         colors = new List<int>();
         for (int i = 0; i < sample.Length; i++)
