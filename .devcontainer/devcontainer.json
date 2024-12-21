@@ -6,5 +6,8 @@
 				"ms-dotnettools.csdevkit"
 			]
 		}
+	},
+	"containerEnv": {
+		"DOTNET_CLI_TELEMETRY_OPTOUT": "true"
 	}
 }

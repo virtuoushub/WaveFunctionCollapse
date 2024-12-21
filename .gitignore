@@ -38,3 +38,6 @@ msbuild.wrn
 
 # WFC artifacts
 output/
+
+# 
+WaveFunctionCollapse.Tests/TestResults/

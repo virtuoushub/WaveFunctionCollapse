@@ -25,13 +25,6 @@ internal static class Helper
         return 0;
     }
 
-    public static long ToPower(this int a, int n)
-    {
-        long product = 1;
-        for (int i = 0; i < n; i++) product *= a;
-        return product;
-    }
-
     public static T Get<T>(this XElement xelem, string attribute, T defaultT = default)
     {
         XAttribute a = xelem.Attribute(attribute);
