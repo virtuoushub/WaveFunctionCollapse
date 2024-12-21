@@ -2,29 +2,29 @@
 
 using System;
 
-abstract class Model
+internal abstract class Model
 {
     protected bool[][] wave;
 
     protected int[][][] propagator;
-    int[][][] compatible;
+    private int[][][] compatible;
     protected int[] observed;
-
-    (int, int)[] stack;
-    int stacksize, observedSoFar;
+    private (int, int)[] stack;
+    private int stacksize, observedSoFar;
 
     protected int MX, MY, T, N;
     protected bool periodic, ground;
 
     protected double[] weights;
-    double[] weightLogWeights, distribution;
+    private double[] weightLogWeights, distribution;
 
     protected int[] sumsOfOnes;
-    double sumOfWeights, sumOfWeightLogWeights, startingEntropy;
+    private double sumOfWeights, sumOfWeightLogWeights, startingEntropy;
     protected double[] sumsOfWeights, sumsOfWeightLogWeights, entropies;
 
     public enum Heuristic { Entropy, MRV, Scanline };
-    Heuristic heuristic;
+
+    private readonly Heuristic heuristic;
 
     protected Model(int width, int height, int N, bool periodic, Heuristic heuristic)
     {
@@ -35,7 +35,7 @@ abstract class Model
         this.heuristic = heuristic;
     }
 
-    void Init()
+    private void Init()
     {
         wave = new bool[MX * MY][];
         compatible = new int[wave.Length][][];
@@ -96,7 +96,7 @@ abstract class Model
         return true;
     }
 
-    int NextUnobservedNode(Random random)
+    private int NextUnobservedNode(Random random)
     {
         if (heuristic == Heuristic.Scanline)
         {
@@ -132,7 +132,7 @@ abstract class Model
         return argmin;
     }
 
-    void Observe(int node, Random random)
+    private void Observe(int node, Random random)
     {
         bool[] w = wave[node];
         for (int t = 0; t < T; t++) distribution[t] = w[t] ? weights[t] : 0.0;
@@ -140,7 +140,7 @@ abstract class Model
         for (int t = 0; t < T; t++) if (w[t] != (t == r)) Ban(node, t);
     }
 
-    bool Propagate()
+    private bool Propagate()
     {
         while (stacksize > 0)
         {
@@ -179,7 +179,7 @@ abstract class Model
         return sumsOfOnes[0] > 0;
     }
 
-    void Ban(int i, int t)
+    private void Ban(int i, int t)
     {
         wave[i][t] = false;
 
@@ -196,7 +196,7 @@ abstract class Model
         entropies[i] = Math.Log(sum) - sumsOfWeightLogWeights[i] / sum;
     }
 
-    void Clear()
+    private void Clear()
     {
         for (int i = 0; i < wave.Length; i++)
         {
@@ -229,5 +229,5 @@ abstract class Model
 
     protected static int[] dx = { -1, 0, 1, 0 };
     protected static int[] dy = { 0, 1, 0, -1 };
-    static int[] opposite = { 2, 3, 0, 1 };
+    private static readonly int[] opposite = { 2, 3, 0, 1 };
 }

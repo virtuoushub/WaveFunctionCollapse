@@ -3,10 +3,10 @@
 using System;
 using System.Collections.Generic;
 
-class OverlappingModel : Model
+internal class OverlappingModel : Model
 {
-    List<byte[]> patterns;
-    List<int> colors;
+    private readonly List<byte[]> patterns;
+    private readonly List<int> colors;
 
     public OverlappingModel(string name, int N, int width, int height, bool periodicInput, bool periodic, int symmetry, bool ground, Heuristic heuristic)
         : base(width, height, N, periodic, heuristic)

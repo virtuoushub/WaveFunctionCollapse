@@ -4,9 +4,9 @@ using System;
 using System.Xml.Linq;
 using System.Diagnostics;
 
-static class Program
+internal static class Program
 {
-    static void Main()
+    private static void Main()
     {
         Stopwatch sw = Stopwatch.StartNew();
         var folder = System.IO.Directory.CreateDirectory("output");

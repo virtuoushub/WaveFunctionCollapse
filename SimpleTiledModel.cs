@@ -5,12 +5,12 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-class SimpleTiledModel : Model
+internal class SimpleTiledModel : Model
 {
-    List<int[]> tiles;
-    List<string> tilenames;
-    int tilesize;
-    bool blackBackground;
+    private readonly List<int[]> tiles;
+    private readonly List<string> tilenames;
+    private readonly int tilesize;
+    private readonly bool blackBackground;
 
     public SimpleTiledModel(string name, string subsetName, int width, int height, bool periodic, bool blackBackground, Heuristic heuristic) : base(width, height, 1, periodic, heuristic)
     {

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-static class Helper
+internal static class Helper
 {
     public static int Random(this double[] weights, double r)
     {
@@ -41,7 +41,7 @@ static class Helper
     public static IEnumerable<XElement> Elements(this XElement xelement, params string[] names) => xelement.Elements().Where(e => names.Any(n => n == e.Name));
 }
 
-static class BitmapHelper
+internal static class BitmapHelper
 {
     public static (int[], int, int) LoadBitmap(string filename)
     {
