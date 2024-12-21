@@ -13,7 +13,7 @@ internal class OverlappingModel : Model
     {
         var (bitmap, SX, SY) = BitmapHelper.LoadBitmap($"samples/{name}.png");
         byte[] sample = new byte[bitmap.Length];
-        colors = new List<int>();
+        colors = [];
         for (int i = 0; i < sample.Length; i++)
         {
             int color = bitmap[i];
@@ -43,9 +43,9 @@ internal class OverlappingModel : Model
             return result;
         };
 
-        patterns = new();
-        Dictionary<long, int> patternIndices = new();
-        List<double> weightList = new();
+        patterns = [];
+        Dictionary<long, int> patternIndices = [];
+        List<double> weightList = [];
 
         int C = colors.Count;
         int xmax = periodicInput ? SX : SX - N + 1;
@@ -94,7 +94,7 @@ internal class OverlappingModel : Model
             propagator[d] = new int[T][];
             for (int t = 0; t < T; t++)
             {
-                List<int> list = new();
+                List<int> list = [];
                 for (int t2 = 0; t2 < T; t2++) if (agrees(patterns[t], patterns[t2], dx[d], dy[d], N)) list.Add(t2);
                 propagator[d][t] = new int[list.Count];
                 for (int c = 0; c < list.Count; c++) propagator[d][t][c] = list[c];

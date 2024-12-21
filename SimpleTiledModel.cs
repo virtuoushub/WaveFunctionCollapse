@@ -35,8 +35,8 @@ internal class SimpleTiledModel : Model
         static int[] rotate(int[] array, int size) => tile((x, y) => array[size - 1 - y + x * size], size);
         static int[] reflect(int[] array, int size) => tile((x, y) => array[size - 1 - x + y * size], size);
 
-        tiles = new List<int[]>();
-        tilenames = new List<string>();
+        tiles = [];
+        tilenames = [];
         var weightList = new List<double>();
 
         var action = new List<int[]>();
@@ -181,7 +181,7 @@ internal class SimpleTiledModel : Model
         for (int d = 0; d < 4; d++)
         {
             sparsePropagator[d] = new List<int>[T];
-            for (int t = 0; t < T; t++) sparsePropagator[d][t] = new List<int>();
+            for (int t = 0; t < T; t++) sparsePropagator[d][t] = [];
         }
 
         for (int d = 0; d < 4; d++) for (int t1 = 0; t1 < T; t1++)
