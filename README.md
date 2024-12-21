@@ -145,7 +145,7 @@ One of the dimensions can be time. In particular, d-dimensional WFC captures the
 ## How to build
 WFC is a console application that depends only on the standard library. Get [.NET Core](https://www.microsoft.com/net/download) for Windows, Linux or macOS and run
 ```
-dotnet run --configuration Release WaveFunctionCollapse.csproj
+dotnet run --configuration Release --project ./WaveFunctionCollapse/WaveFunctionCollapse.csproj
 ```
 Generated results are saved into the `output` folder. Edit `samples.xml` to change model parameters.
 

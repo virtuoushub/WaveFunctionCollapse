@@ -3,13 +3,19 @@
 using System;
 using System.Xml.Linq;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 
 internal static class Program
 {
     private static void Main()
     {
         Stopwatch sw = Stopwatch.StartNew();
-        var folder = System.IO.Directory.CreateDirectory("output");
+        // fix for moving 
+        string exeDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        Directory.SetCurrentDirectory(exeDir);
+
+        var folder = Directory.CreateDirectory("output");
         foreach (var file in folder.GetFiles()) file.Delete();
 
         Random random = new();
@@ -58,7 +64,7 @@ internal static class Program
                         Console.WriteLine("DONE");
                         model.Save($"output/{name} {seed}.png");
                         if (model is SimpleTiledModel stmodel && xelem.Get("textOutput", false))
-                            System.IO.File.WriteAllText($"output/{name} {seed}.txt", stmodel.TextOutput());
+                            File.WriteAllText($"output/{name} {seed}.txt", stmodel.TextOutput());
                         break;
                     }
                     else Console.WriteLine("CONTRADICTION");
